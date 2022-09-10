@@ -1,5 +1,5 @@
 {% set name = "bleak-winrt" %}
-{% set version = "1.1.1" %}
+{% set version = "1.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,15 +7,15 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/bleak-winrt-{{ version }}.tar.gz
-  sha256: 3e7765f98d71b5229d95bd3b197931994dead40f3144e7186de7b8f664e26df0
+  sha256: 0577d070251b9354fc6c45ffac57e39341ebb08ead014b1bdbd43e211d2ce1d6
 
 build:
   script: {{ PYTHON }} -m pip install . -vv
-  number: 1
+  number: 0
   skip: true  # [not win]
 
 requirements:
-  build: 
+  build:
     - {{ compiler('c') }}
     - cmake
     - make
