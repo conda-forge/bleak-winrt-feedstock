@@ -11,12 +11,13 @@ source:
 
 build:
   script: {{ PYTHON }} -m pip install . -vv
-  number: 2
+  number: 3
   skip: true  # [not win]
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - cmake
     - make
   host:
