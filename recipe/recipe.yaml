@@ -1,0 +1,49 @@
+schema_version: 1
+
+context:
+  name: bleak-winrt
+  version: "1.2.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/bleak-winrt-${{ version }}.tar.gz
+  sha256: 0577d070251b9354fc6c45ffac57e39341ebb08ead014b1bdbd43e211d2ce1d6
+
+build:
+  number: 5
+  skip: not win
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - make
+  host:
+    - python
+    - pip
+    - setuptools
+    - scikit-build
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - bleak_winrt
+      pip_check: true
+
+about:
+  summary: Python WinRT bindings for Bleak
+  license: MIT
+  license_file:
+    - LICENSE
+  homepage: https://github.com/dlech/bleak-winrt
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
